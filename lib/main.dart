@@ -15,15 +15,27 @@ class _QuestionAppState extends State<QuestionApp> {
   final List<Map<String, Object>> _quests = const [
     {
       'Text': 'What is your favorite color?',
-      'Answers': ['Blue', 'Purple', 'Red']
+      'Answers': [
+        {'Text': 'Blue', 'points': 10},
+        {'Text': 'Purple', 'points': 2},
+        {'Text': 'Red', 'points': 8},
+      ],
     },
     {
       'Text': 'What is your favorite animal?',
-      'Answers': ['Cat', 'Dog', 'Bird']
+      'Answers': [
+        {'Text': 'Cat', 'points': 7},
+        {'Text': 'Dog', 'points': 10},
+        {'Text': 'Bird', 'points': 2},
+      ],
     },
     {
       'Text': 'What is your favorite programmation language?',
-      'Answers': ['Flutter!', 'Python!', 'Typescript🤢']
+      'Answers': [
+        {'Text': 'Flutter!', 'points': 10},
+        {'Text': 'Python!', 'points': 7},
+        {'Text': 'Typescript🤢', 'points': 2},
+      ],
     },
   ];
 
