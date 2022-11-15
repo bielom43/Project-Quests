@@ -5,8 +5,8 @@
 // ignore_for_file: use_key_in_widget_constructors
 // ignore_for_file: library_private_types_in_public_api
 import 'package:flutter/material.dart';
-import 'package:project_quest/question.dart';
-import 'package:project_quest/answers.dart';
+import 'package:project_quest/Components/result.dart';
+import 'package:project_quest/Components/questionary.dart';
 
 void main(List<String> args) => runApp(QuestionApp());
 
@@ -39,30 +39,18 @@ class _QuestionAppState extends State<QuestionApp> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> answers = haveQuestionSelected
-        ? _quests[_selectedQuestion].cast()['Answers']
-        : [];
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('App Questions'),
         ),
         body: haveQuestionSelected
-            ? Column(
-                children: <Widget>[
-                  Question(_quests[_selectedQuestion]['Text'].toString()),
-                  ...answers.map((t) => Answer(t, _answer)).toList(),
-                ],
+            ? Questionary(
+                quests: _quests,
+                answeres: _answer,
+                selectedQuest: _selectedQuestion,
               )
-            : Center(
-                child: Text(
-                  'Congrats!!',
-                  style: TextStyle(
-                    fontSize: 80,
-                  ),
-                ),
-              ),
+            : Result(),
       ),
     );
   }
