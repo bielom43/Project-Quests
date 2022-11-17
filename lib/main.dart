@@ -12,6 +12,7 @@ void main(List<String> args) => runApp(QuestionApp());
 
 class _QuestionAppState extends State<QuestionApp> {
   var _selectedQuestion = 0;
+  var _totalPontuation = 0;
   final List<Map<String, Object>> _quests = const [
     {
       'Text': 'What is your favorite color?',
@@ -39,10 +40,18 @@ class _QuestionAppState extends State<QuestionApp> {
     },
   ];
 
-  void _answer() {
+  void _answer(int points) {
     if (haveQuestionSelected) {
       setState(() => _selectedQuestion++);
+      _totalPontuation += points;
     }
+  }
+
+  void _resetQuestionary() {
+    setState(() {
+      _selectedQuestion = 0;
+      _totalPontuation = 0;
+    });
   }
 
   bool get haveQuestionSelected {
@@ -62,7 +71,7 @@ class _QuestionAppState extends State<QuestionApp> {
                 answeres: _answer,
                 selectedQuest: _selectedQuestion,
               )
-            : Result(),
+            : Result(_totalPontuation, _resetQuestionary),
       ),
     );
   }

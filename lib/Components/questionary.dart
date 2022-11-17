@@ -5,7 +5,7 @@ import 'package:project_quest/Components/answers.dart';
 class Questionary extends StatelessWidget {
   final List<Map<String, Object>> quests;
   final int selectedQuest;
-  final void Function() answeres;
+  final void Function(int) answeres;
 
   const Questionary({
     super.key,
@@ -26,7 +26,12 @@ class Questionary extends StatelessWidget {
     return Column(
       children: [
         Question(quests[selectedQuest]['Text'] as String),
-        ...answers.map((t) => Answer(t['Text'] as String, answeres)).toList(),
+        ...answers.map((ans) {
+          return Answer(
+            ans['Text'] as String,
+            () => answeres(int.parse(ans['points'].toString())),
+          );
+        }).toList(),
       ],
     );
   }
